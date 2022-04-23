@@ -45,7 +45,7 @@ $(document).ready(function () {
     sum = sum + (max - head);
     
     var temp;
-    var i,j,flag;
+    var i,j,flag=1;
 
     for(i=in_arr.length-1;i>=0;--i)	
     {			
