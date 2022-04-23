@@ -1,0 +1,19 @@
+/* Process Scheduling */
+
+#gantt-chart {
+  margin: auto;
+  width: 600px;
+  height: 100px;
+  position: relative;
+  border: 1px solid black;
+}
+
+.block {
+  position: relative;
+  display: none;
+  border-right: 1px solid black;
+  float: left;
+  text-align: center;
+  background-color: rgba(112, 128, 144, 0.44);
+  height: 98px;
+}

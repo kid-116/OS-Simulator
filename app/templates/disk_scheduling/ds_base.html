@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block link %}
+    <script src= "https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script>zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/"; ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf6d"]; </script>
+    {% block algo_link %}
+    {% endblock %}
+{% endblock %}
+
+{% block title %}
+  Disk Scheduling - {{algo}}
+{% endblock %}
+
+{% block body %}
+<h1>Disk Scheduling - {{ algo }}</h1>
+<section>
+  <h2>Wiki</h2>
+  {% block wiki %}
+  {% endblock %}
+</section>
+<section>
+  <h2>Simulation</h2>
+  <div class="sections container">
+    <div class="row">
+      <div class="col s10 offset-s1">
+        <br />
+        <h3>Input Section</h3>
+        <hr style="border-top: 2px dashed blanchedalmond" />
+        <br />
+        This section is for entering the necassery details.
+        <br />
+        <h4>Enter the following details</h4>
+        <div>
+          <label>Head: </label
+          ><input
+            class="tdm-head"
+            type="number"
+            min="0"
+            style="text-align: center"
+          />
+        </div>
+        <br />
+        <div>
+          <h4>Enter the first and last cylinder number</h4>
+          <label>First: </label
+          ><input
+            class="tdm-head"
+            type="number"
+            min="0"
+            style="text-align: center"
+          /><br />
+        </div>
+        <div>
+          <label>Last: </label>
+          <input
+            class="tdm-head"
+            type="number"
+            min="0"
+            style="text-align: center"
+          /><br />
+          <label>Reference String: </label>
+          <input
+            class="tdm-head"
+            type="text"
+            style="text-align: center"
+            id="reference-string"
+          />
+        </div>
+        <br />
+        <button class="tdm-button" id="calc">Calculate</button
+        ><br /><br />
+      </div>
+    </div>
+  </div>
+  <div class="output-container">
+    <div id="chartContainer"></div>
+  </div>
+  {% block sim %}
+  {% endblock %}
+</section>    
+{% endblock %}
+
+                
