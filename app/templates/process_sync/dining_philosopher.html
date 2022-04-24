@@ -1,63 +1,61 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Dining Philosopher
+Dining Philosopher
 {% endblock %}
 
 {% block link %}
-  <script src="/static/js/process_sync/dining_philosopher.js"></script>
+<script src="/static/js/process_sync/dining_philosopher.js"></script>
 {% endblock %}
 
 {% block body %}
-  <h1>Process Synchronization - Dining Philosopher</h1>
-  <section>
-    <h2>Wiki</h2>
-  </section>
-  <section>
-    <h2>Simulation</h2>
-    <div>
-		<button type="button" class="btn btn-primary" style="height:70px;width:300px;position:absolute;top:30%;left:20%;font-size:25px" id="next">Next!</button>
+<h1>Process Synchronization - Dining Philosopher</h1>
+<section>
+	<h2>Simulation</h2>
+	<div style="margin-top: 100px;">
+		<button type="button" class="btn btn-primary"
+			style="height:70px;width:300px;position:absolute;top:30%;left:20%;font-size:25px" id="next">Next!</button>
 		<button type="button" , id="num" , name="num" , class="btn btn-secondary" ,
 			style="height:70px;width:300px;position:absolute;top:30%;left:65%;font-size:25px">Philosopher: </button>
 		<div style="position:absolute;top:50%;left:70%;">
 			<table class="table table-striped">
-        <tr>
-          <th>Philosopher </th>
-          <th>Thinking</th>
-          <th>Hungry</th>
-          <th>Eating </th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td id="t11">Yes</td>
-          <td id="t12">-</td>
-          <td id="t13">-</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td id="t21">Yes</td>
-          <td id="t22">-</td>
-          <td id="t23">-</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td id="t31">Yes</td>
-          <td id="t32">-</td>
-          <td id="t33">-</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td id="t41">Yes</td>
-          <td id="t42">-</td>
-          <td id="t43">-</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td id="t51">Yes</td>
-          <td id="t52">-</td>
-          <td id="t53">-</td>
-        </tr>
-      </table>
+				<tr>
+					<th>Philosopher </th>
+					<th>Thinking</th>
+					<th>Hungry</th>
+					<th>Eating </th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td id="t11">Yes</td>
+					<td id="t12">-</td>
+					<td id="t13">-</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td id="t21">Yes</td>
+					<td id="t22">-</td>
+					<td id="t23">-</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td id="t31">Yes</td>
+					<td id="t32">-</td>
+					<td id="t33">-</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td id="t41">Yes</td>
+					<td id="t42">-</td>
+					<td id="t43">-</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td id="t51">Yes</td>
+					<td id="t52">-</td>
+					<td id="t53">-</td>
+				</tr>
+			</table>
 		</div>
 		<p style="position:absolute;top:37%;left:41%;">Philosopher 1</p>
 		<p style="position:absolute;top:62%;left:29%;">Philosopher 5</p>
@@ -105,5 +103,5 @@
 		</button>
 		<img src="https://icons.iconarchive.com/icons/google/noto-emoji-food-drink/256/32402-cooked-rice-icon.png"
 			style="position: absolute;height: 100px;width: 100px; top: 66%;left:44.5%">
-  </section>
+</section>
 {% endblock %}

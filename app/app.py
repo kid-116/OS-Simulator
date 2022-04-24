@@ -144,7 +144,7 @@ def ps_fsfc():
 
 @app.route('/process-scheduling/priority', methods=['GET'])
 def ps_priority():
-  return render_template('process_scheduling/priority.html', algo='Priority')
+  return render_template('process_scheduling/priority.html', algo='Priority (Preemptive)')
 
 @app.route('/process-scheduling/round-robin', methods=['GET'])
 def ps_round_robin():
