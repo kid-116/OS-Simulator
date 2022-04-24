@@ -12,6 +12,16 @@ Deadlock - Banker's Algorithm
 <h1>Banker's Algorithm</h1>
 <section>
 	<h2>Wiki</h2>
+	<p>The Banker’s algorithm is a resource allocation and deadlock avoidance algorithm that tests for safety by simulating
+	the allocation for predetermined maximum possible amounts of all resources, then makes an “s-state” check to test
+	for possible activities, before deciding whether the allocation should be allowed to continue or not.</p>
+	<p>The reason behind the naming of the algorithm as such lies in the fact that it is used in the banking system to
+	check whether a loan can be sanctioned to a person or not. Suppose there are ‘N’ account holders in a bank and the
+	total sum of their money is ‘S’. If a person applies for a loan then the bank first subtracts the loan amount from
+	the total amount of money that the bank has and if the resulting difference is greater than S then and only then
+	will the loan be sanctioned. This methodology ensures that even in the unlikely possibility that all the account
+	holders come to withdraw their money from the bank, the bank can easily do this. Thus the bank would always try to
+	remain in a safe state. Banker’s algorithm works in a similar way in computers.</p>
 </section>
 <section>
 	<h2>Simulation</h2>

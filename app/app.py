@@ -112,15 +112,15 @@ def page_replacement():
 
 @app.route('/page-replacement/fifo', methods=['GET'])
 def pa_fifo():
-    return render_template('page_replacement/fifo.html')
+    return render_template('page_replacement/fifo.html', algo='FIFO')
 
 @app.route('/page-replacement/lru', methods=['GET'])
 def pa_lru():
-    return render_template('page_replacement/lru.html')
+    return render_template('page_replacement/lru.html', algo='LRU')
 
 @app.route('/page-replacement/optimal', methods=['GET'])
 def pa_optimal():
-    return render_template('page_replacement/optimal.html')
+    return render_template('page_replacement/optimal.html', algo='Optimal')
 
 @app.route('/paging', methods=['GET'])
 def paging():
