@@ -52,7 +52,7 @@ def ds_sstf():
 
 @app.route('/disk-scheduling/compare', methods=['GET'])
 def ds_compare():
-    return render_template('disk_scheduling/compare.html', algo='SSTF')
+    return render_template('disk_scheduling/compare.html', algo='Comparison')
 
 @app.route('/file-allocation', methods=['GET'])
 def file_allocation():

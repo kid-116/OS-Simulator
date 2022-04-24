@@ -5,27 +5,27 @@ function counter() {
     var counter = rear - front + 1;
     if (rear == -1) {
         var change = document.getElementById("count");
-        change.innerHTML = "counter = 0"
+        change.innerHTML = "Counter = 0"
     }
     else if (counter == 1) {
         var change = document.getElementById("count");
-        change.innerHTML = "counter = 1"
+        change.innerHTML = "Counter = 1"
     }
     if (counter == 2) {
         var change = document.getElementById("count");
-        change.innerHTML = "counter = 2"
+        change.innerHTML = "Counter = 2"
     }
     if (counter == 3) {
         var change = document.getElementById("count");
-        change.innerHTML = "counter = 3"
+        change.innerHTML = "Counter = 3"
     }
     if (counter == 4) {
         var change = document.getElementById("count");
-        change.innerHTML = "counter = 4"
+        change.innerHTML = "Counter = 4"
     }
     if (counter == 5) {
         var change = document.getElementById("count");
-        change.innerHTML = "counter = 5"
+        change.innerHTML = "Counter = 5"
     }
 }
 
@@ -79,7 +79,6 @@ function produce() {
     if (flag == 5) {
         document.getElementById("prod1").disabled = true;
     }
-    // document.getElementById("prod1").style.color=green;
     if (front == -1 && rear == -1) {
         front = 0;
         rear = 0;
@@ -117,23 +116,21 @@ $(document).ready(function () {
       var n = Math.random();
       num = Math.floor(n * 2);
       if (flag == 0 && num == 1) {
-          alert("No item to consume for the consumer!");
           document.getElementById("num").innerHTML = "No item to consume";
       }
       else if (flag == 5 && num == 0) {
-          document.getElementById("num").innerHTML = "buffer Full to produce";
-          alert("Buffer full can't add the produced item to the buffer!");
+          document.getElementById("num").innerHTML = "Buffer is full";
       }
       else if (num == 0) {
           document.getElementById("prod1").style.backgroundColor = 'green';
           document.getElementById("con").style.backgroundColor = 'red';
-          document.getElementById("num").innerHTML = "producer";
+          document.getElementById("num").innerHTML = "Producer";
           produce();
       }
       else {
           document.getElementById("con").style.backgroundColor = 'green';
           document.getElementById("prod1").style.backgroundColor = 'red';
-          document.getElementById("num").innerHTML = "consumer";
+          document.getElementById("num").innerHTML = "Consumer";
           consume();
       }
     });

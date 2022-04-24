@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block link %}
-    {% block algo_link %}
-    {% endblock %}
+{% block algo_link %}
+{% endblock %}
 {% endblock %}
 
 {% block title %}
-  Page Replacement - {{algo}}
+Page Replacement - {{algo}}
 {% endblock %}
 
 {% block body %}
@@ -18,22 +18,23 @@
 </section>
 <section>
   <h2>Simulation</h2>
-    <form>
-    <div class"container" >
-        <div class="form-group row" style="margin-left:40px;width:25vw;display:block">
-            <input type = "number" id="frames"class="form-control" placeholder="Enter the number of frames:">
-        </div>
+  <form>
+    <div>
+      <div class="form-group row" style="margin-left:40px;width:25vw;display:block">
+        <input type="number" id="frames" class="form-control" placeholder="Number of frames">
+      </div>
 
-        <div class="form-group row" style="margin-left:40px;width:25vw;display:block">
-                <input type = "text" id="rs" class="form-control" placeholder="Enter the Reference string:">
-        </div>
-            <input type = "button" style="margin-left:40px; margin-bottom:20px" class="btn btn-danger btn-lg" id="compute-btn" value = "Compute">
-		<div id="table-div" class="table-responsive" style="width:80vw;margin:auto;text-align:center"></div>
-		<div id="sp1"></div>
-		<div id="sp2"></div>
+      <div class="form-group row" style="margin-left:40px;width:25vw;display:block">
+        <input type="text" id="rs" class="form-control" placeholder="Reference string">
+      </div>
+      <input type="button" style="margin-left:40px; margin-bottom:20px" class="btn btn-success btn-lg" id="compute-btn"
+        value="Compute">
+      <div id="table-div" class="table-responsive" style="width:80vw;margin:auto;text-align:center"></div>
+      <div id="sp1"></div>
+      <div id="sp2"></div>
     </div>
-</form>
-    {% block sim %}
-    {% endblock %}
-</section> 
+  </form>
+  {% block sim %}
+  {% endblock %}
+</section>
 {% endblock %}

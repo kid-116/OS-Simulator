@@ -57,17 +57,20 @@ $(document).ready(function () {
     });
     
     function showOutput(name, allocations) {
-        const file = document.createElement('div');
-        const fileName = document.createElement('p');
-        fileName.textContent = name;
-        file.append(fileName);
-        const indexList = document.createElement('ul');
+        var file = `
+            <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">${name}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+        `
         for (var i = 0; i < allocations.length; i++) {
-            const block = document.createElement('li');
-            block.textContent = `${i} -> ${allocations[i]}`;
-            indexList.append(block);
+            file += `<li class="list-group-item">#${i} -> ${allocations[i]}</li>`
         }
-        file.append(indexList);
-        document.getElementById("idxd").append(file);
+        file += `       
+            </ul>
+            </div>
+        `
+        document.getElementById("op").innerHTML = document.getElementById("op").innerHTML + file;
     }
 });

@@ -28,8 +28,8 @@ function displayPartSize() {
         htmlText +=
             `
         <div class="form-group">
-            <label>Size of partition ` + String(i) + ` : </label>
-            <input type="text" class="form-control" id="part-size-` + String(i) + `" placeholder="Enter size of partitition ` + String(i) + `">
+            <label class="form-label">Size of partition ${i}</label>
+            <input type="text" class="form-control" id="part-size-${i}" placeholder="Size of partitition ${i}">
         </div>
         `;
     }

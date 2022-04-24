@@ -16,41 +16,41 @@ var input_q_pro_id = [];
 var input_q_pro_size = [];
 var input_q_size = 0;
 
-$(document).ready(function() {
-    $("#mem-size-btn").click(function(){
+$(document).ready(function () {
+    $("#mem-size-btn").click(function () {
         total_mem_size = Number($("#mem-size").val());
         startColumn2();
-    }); 
-}); 
+    });
+});
 
 function startColumn2() {
-    var htmlText = 
-    `
+    var htmlText =
+        `
     <button type="submit" class="btn btn-primary" id="add-pro-btn">Add process</button>
     <button type="submit" class="btn btn-primary" id="rem-pro-btn">Remove process</button>
     `;
     $("#add-rem-pro-btns").html(htmlText);
-    var htmlText = 
-    `
+    var htmlText =
+        `
     <canvas id="myCanvas" width="170" height="520" style="border:1px solid #d3d3d3;">
                 Your browser does not support the HTML5 canvas tag.</canvas>
     `;
     $("#canvas").html(htmlText);
     drawMemory();
-    $(document).ready(function() {
-        $("#add-pro-btn").click(function(){
+    $(document).ready(function () {
+        $("#add-pro-btn").click(function () {
             addProcessSize();
-        }); 
-        $("#rem-pro-btn").click(function(){
+        });
+        $("#rem-pro-btn").click(function () {
             remProcessId();
-        }); 
+        });
     });
 
 }
 
 function addProcessSize() {
     var htmlText =
-    `
+        `
     <div class="form-group">
         <label>Size of process to be added: </label>
         <input type="text" class="form-control" id="add-pro-size" placeholder="Enter size of process to be added">      
@@ -58,73 +58,73 @@ function addProcessSize() {
     <button type="submit" class="btn btn-primary" id="add-btn">Add</button>
     `;
     $("#add-rem-pro").html(htmlText);
-    $(document).ready(function() {
-        $("#add-btn").click(function(){
+    $(document).ready(function () {
+        $("#add-btn").click(function () {
             var pro_size = Number($("#add-pro-size").val());
             cur_pro_id += 1;
             addProcess(pro_size, cur_pro_id, 0);
-        }); 
-    }); 
+        });
+    });
 }
 
 function addProcess(pro_size, pro_id, fromQ) {
     var i;
     var found = 0;
-    if(num_parts == 0) {
+    if (num_parts == 0) {
         addPart(0, pro_size, pro_id);
         found = 1;
     }
     else {
-        for(i = 0; i < num_parts; i++) {
+        for (i = 0; i < num_parts; i++) {
 
-            if(i == 0) {
-                if(part_start[0] >= pro_size) {
+            if (i == 0) {
+                if (part_start[0] >= pro_size) {
                     addPart(0, pro_size, pro_id);
                     found = 1;
                     break;
                 }
             }
-            else if(found == 0) {
-                if((part_start[i] - part_end[i-1]) >= pro_size) {
+            else if (found == 0) {
+                if ((part_start[i] - part_end[i - 1]) >= pro_size) {
                     addPart(i, pro_size, pro_id);
                     found = 1;
                     break;
                 }
             }
         }
-        if(found == 0) {
-            if((total_mem_size - part_end[num_parts-1]) >= pro_size) {
+        if (found == 0) {
+            if ((total_mem_size - part_end[num_parts - 1]) >= pro_size) {
                 addPart(num_parts, pro_size, pro_id);
                 found = 1;
             }
         }
     }
 
-    if(found == 0 && fromQ == 0) {
+    if (found == 0 && fromQ == 0) {
         alert('New process could not be added. Process added to Input Queue');
         calcExtFrag(pro_size);
         addToQ(pro_size, pro_id);
     }
-    if(found == 1 && fromQ == 1) {
+    if (found == 1 && fromQ == 1) {
         removeFromQ(pro_id);
         alert('Process ' + pro_id + ' of size ' + pro_size + ' added to memory.');
     }
     drawInputQTable();
-}    
+}
 
 function addPart(index, pro_size, pro_id) {
     part_pro_id[num_parts] = pro_id;
     part_size[num_parts] = pro_size;
-    if(index == 0) {
+    if (index == 0) {
         part_start[num_parts] = 0;
         part_end[num_parts] = pro_size;
     }
-    else if(index < num_parts) {
-        part_start[num_parts] = part_end[index-1];
+    else if (index < num_parts) {
+        part_start[num_parts] = part_end[index - 1];
         part_end[num_parts] = part_start[num_parts] + pro_size;
     }
     else {
-        part_start[num_parts] = part_end[num_parts-1];
+        part_start[num_parts] = part_end[num_parts - 1];
         part_end[num_parts] = part_start[num_parts] + pro_size;
     }
     num_parts += 1;
@@ -135,51 +135,51 @@ function addPart(index, pro_size, pro_id) {
 function sortPart() {
     var i;
     var j;
-    for(i = 0; i < num_parts; i++) {
-        for(j = 0; j < (num_parts - i -1); j++) {
-            if(part_start[j] > part_start[j+1]) {
+    for (i = 0; i < num_parts; i++) {
+        for (j = 0; j < (num_parts - i - 1); j++) {
+            if (part_start[j] > part_start[j + 1]) {
                 var temp = part_start[j];
-                part_start[j] = part_start[j+1];
-                part_start[j+1] = temp;
+                part_start[j] = part_start[j + 1];
+                part_start[j + 1] = temp;
 
                 temp = part_end[j];
-                part_end[j] = part_end[j+1];
-                part_end[j+1] = temp;
+                part_end[j] = part_end[j + 1];
+                part_end[j + 1] = temp;
 
                 temp = part_size[j];
-                part_size[j] = part_size[j+1];
-                part_size[j+1] = temp;
+                part_size[j] = part_size[j + 1];
+                part_size[j + 1] = temp;
 
                 temp = part_pro_id[j];
-                part_pro_id[j] = part_pro_id[j+1];
-                part_pro_id[j+1] = temp;
+                part_pro_id[j] = part_pro_id[j + 1];
+                part_pro_id[j + 1] = temp;
             }
         }
     }
 }
 
 function drawPart() {
-    var ctx=document.getElementById("myCanvas").getContext("2d");
+    var ctx = document.getElementById("myCanvas").getContext("2d");
     ctx.beginPath();
     ctx.rect(myCanvas_x_start, myCanvas_y_start, myCanvas_width, myCanvas_height);
     ctx.fillStyle = "white";
     ctx.fill();
     var i;
-    for(i = 0; i < num_parts; i++) {
+    for (i = 0; i < num_parts; i++) {
         ctx.beginPath();
-        ctx.rect(myCanvas_x_start, myCanvas_y_start + part_start[i]*(500/total_mem_size), myCanvas_width, part_size[i]*(500/total_mem_size));
+        ctx.rect(myCanvas_x_start, myCanvas_y_start + part_start[i] * (500 / total_mem_size), myCanvas_width, part_size[i] * (500 / total_mem_size));
         ctx.fillStyle = "green";
         ctx.fill();
 
         ctx.font = "14px Arial bold";
         ctx.fillStyle = "black";
-        ctx.fillText("P-"+ String(part_pro_id[i]) + ", size: " + String(part_size[i]), 50, myCanvas_y_start + part_start[i]*(500/total_mem_size) + part_size[i]*(500/total_mem_size)/2);
+        ctx.fillText("P-" + String(part_pro_id[i]) + ", size: " + String(part_size[i]), 50, myCanvas_y_start + part_start[i] * (500 / total_mem_size) + part_size[i] * (500 / total_mem_size) / 2);
     }
 }
 
 function remProcessId() {
     var htmlText =
-    `
+        `
     <div class="form-group">
         <label>Id of process to be removed: </label>
         <input type="text" class="form-control" id="rem-pro-id" placeholder="Enter id of process to be removed">      
@@ -187,36 +187,36 @@ function remProcessId() {
     <button type="submit" class="btn btn-primary" id="rem-btn">Remove</button>
     `;
     $("#add-rem-pro").html(htmlText);
-    $(document).ready(function() {
-        $("#rem-btn").click(function(){
+    $(document).ready(function () {
+        $("#rem-btn").click(function () {
             var id_pro = Number($("#rem-pro-id").val());
             remProcess(id_pro);
-        }); 
-    }); 
+        });
+    });
 }
 
 function remProcess(id_pro) {
     var i;
     var found = 0;
-    for(i = 0; i < num_parts; i++) {
-        if(part_pro_id[i] == id_pro && found == 0) {
+    for (i = 0; i < num_parts; i++) {
+        if (part_pro_id[i] == id_pro && found == 0) {
 
             var j;
-            for(j = i+1; j < num_parts; j++) {
-                part_pro_id[j-1] = part_pro_id[j];
-                part_start[j-1] = part_start[j];
-                part_end[j-1] = part_end[j];
-                part_size[j-1] = part_size[j];
+            for (j = i + 1; j < num_parts; j++) {
+                part_pro_id[j - 1] = part_pro_id[j];
+                part_start[j - 1] = part_start[j];
+                part_end[j - 1] = part_end[j];
+                part_size[j - 1] = part_size[j];
             }
             found = 1;
             num_parts -= 1;
             break;
         }
     }
-    if(found == 1) {
+    if (found == 1) {
         drawPart();
         var i;
-        for(i = 0; i < input_q_size; i++) {
+        for (i = 0; i < input_q_size; i++) {
             addProcess(input_q_pro_size[i], input_q_pro_id[i], 1);
         }
     }
@@ -227,10 +227,10 @@ function remProcess(id_pro) {
 }
 
 function drawMemory() {
-    var c=document.getElementById("myCanvas");
-    var ctx=c.getContext("2d");
-    ctx.rect(myCanvas_x_start,myCanvas_y_start,myCanvas_width,myCanvas_height);    
-    ctx.stroke();  
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.rect(myCanvas_x_start, myCanvas_y_start, myCanvas_width, myCanvas_height);
+    ctx.stroke();
 }
 
 function addToQ(pro_size, pro_id) {
@@ -241,11 +241,11 @@ function addToQ(pro_size, pro_id) {
 
 function removeFromQ(pro_id) {
     var i;
-    for(i = 0; i < input_q_size; i++) {
-        if(input_q_pro_id[i] == pro_id) {
-            for(j = i+1; j < input_q_size; j++) {
-                input_q_pro_id[j-1] = input_q_pro_id[j];
-                input_q_pro_size[j-1] = input_q_pro_size[j];
+    for (i = 0; i < input_q_size; i++) {
+        if (input_q_pro_id[i] == pro_id) {
+            for (j = i + 1; j < input_q_size; j++) {
+                input_q_pro_id[j - 1] = input_q_pro_id[j];
+                input_q_pro_size[j - 1] = input_q_pro_size[j];
             }
         }
     }
@@ -253,8 +253,8 @@ function removeFromQ(pro_id) {
 }
 
 function drawInputQTable() {
-    var htmlText = 
-    `
+    var htmlText =
+        `
     <button type="submit" class="btn btn-primary md-3" id="compact-btn">Compact</button> 
     <table>
     <tr>
@@ -263,54 +263,52 @@ function drawInputQTable() {
     <tr>
         <th>Process Id</th>
     `;
-    for(var i = 0; i < input_q_size; i++)
-    {
-        htmlText += 
-        `
+    for (var i = 0; i < input_q_size; i++) {
+        htmlText +=
+            `
         <td>` + input_q_pro_id[i] + `</td>
         `;
     }
 
-    htmlText += 
-    `
+    htmlText +=
+        `
     <tr>
         <th>Process Size</th>
     `;
-    for(var i = 0; i < input_q_size; i++)
-    {
-        htmlText += 
-        `
+    for (var i = 0; i < input_q_size; i++) {
+        htmlText +=
+            `
         <td>` + input_q_pro_size[i] + `</td>
         `;
     }
 
-    htmlText += 
-    `
+    htmlText +=
+        `
     </tr>
     </table>
     `;
     $("#input-q-table").html(htmlText);
-    $(document).ready(function() {
-        $("#compact-btn").click(function(){
+    $(document).ready(function () {
+        $("#compact-btn").click(function () {
             Compact();
-        }); 
-    }); 
+        });
+    });
 }
 
 function Compact() {
     var i;
-    for(i = 0; i < num_parts; i++) {
-        if(i == 0) {
+    for (i = 0; i < num_parts; i++) {
+        if (i == 0) {
             part_start[i] = 0;
             part_end[i] = part_start[i] + part_size[i];
         }
         else {
-            part_start[i] = part_end[i-1];
+            part_start[i] = part_end[i - 1];
             part_end[i] = part_start[i] + part_size[i];
         }
     }
     drawPart();
-    for(i = 0; i < input_q_size; i++) {
+    for (i = 0; i < input_q_size; i++) {
         addProcess(input_q_pro_size[i], input_q_pro_id[i], 1);
     }
 }
@@ -318,18 +316,16 @@ function Compact() {
 function calcExtFrag(pro_size) {
     var tot_hole_size = 0;
     var i;
-    for(i = 0; i < num_parts; i++) {
-        if(i ==0)
-        {
+    for (i = 0; i < num_parts; i++) {
+        if (i == 0) {
             tot_hole_size += part_start[i];
         }
-        else
-        {
-            tot_hole_size += part_start[i] - part_end[i-1];
+        else {
+            tot_hole_size += part_start[i] - part_end[i - 1];
         }
     }
-    tot_hole_size += total_mem_size - part_end[num_parts-1];
-    if(tot_hole_size > pro_size) {
+    tot_hole_size += total_mem_size - part_end[num_parts - 1];
+    if (tot_hole_size > pro_size) {
         alert("External Fragmentation is " + tot_hole_size);
     }
 }

@@ -146,7 +146,6 @@ $(document).ready(function () {
 
     function drawTable(i) {
         if (i < stuff.length) {
-            var table = document.getElementById("ptable");
             $("#ptable").append("<tr><td>" + stuff[i].no + "</td><td>" + stuff[i].at + "</td><td>" + stuff[i].bt1 + "</td><td>" + stuff[i].wt + "</td><td>" + stuff[i].tat + "</td></tr>");
             drawTable(i + 1);
         }

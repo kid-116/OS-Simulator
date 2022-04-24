@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    $('#inp').append(`<input type="number" min="0" id="tq" placeholder="Time quantum"></input>`);
+    $('#tq').show();
+    $('#ptab').hide();
 
     $('#start').click(function () {
         tq = parseInt(document.getElementById("tq").value);

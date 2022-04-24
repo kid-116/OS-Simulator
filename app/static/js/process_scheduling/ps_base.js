@@ -14,6 +14,8 @@ var index = 1;
 var cpu_efficiency;
 
 $(document).ready(function () {
+    $('#tq').hide();
+
     $('#add').click(function () {
         addtoList();
     });

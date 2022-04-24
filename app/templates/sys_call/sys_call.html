@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block title %}
+System Calls
+{% endblock %}
+
+{% block body %}
+<section>
+    <h1>System Calls</h1>
+    <figure>
+        <img src="/static/images/sys_call.png" />
+    </figure>
+    <p>System call provides an interface between a process and the operating system. These calls are made to request the
+        kernel for resources by processes in use mode. There are different types of system calls.
+    </p>
+</section>
+<section>
+    <h2>File Manipulation</h2>
+    <dl>
+        <dt>creat()</dt>
+        <dd>The system call creat() is used to create a file. If the creation of the file is successful, it returns an
+            integer file descriptor for the same.</dd>
+        <dt>open()</dt>
+        <dd>Given a pathname for a file, open() returns a file descriptor which is a small non-negative
+            integer. The integer returned by a successful call will be the lowest-numbered file
+            descriptor not currently open for the process. The integer may be used to perform other
+            subsequent system calls on the file.</dd>
+        <dt>close()</dt>
+        <dd>The system call close() destroys a file descriptor such that it no longer refers to any file and
+            may be reused for any other file.</dd>
+        <dt>read()</dt>
+        <dd>The function prototype for the system call read() is ssize_t read(int fd, void* buf, size_t
+            count). It attempts to read upto count bytes from the file descriptor fd into the buffer
+            starting at buf. On success, the number of bytes read is returned whereas 0 indicates the
+            end of file. On error, -1 is returned. The advantage of using void* type is that it can point to
+            memory of any data type.</dd>
+        <dt>lseek()</dt>
+        <dd>The system call lseek() repositions the read/write pointer within the file referenced by the
+            descriptor passed. The call also takes a special flag which may be SEEK_SET, SEEK_CUR or
+            SEEK_END.</dd>
+        <dt>dup()</dt>
+        <dd>dup() takes an old file descriptor and makes a new file descriptor corresponding to an
+            existing open file description. Most properties between the old and new fd (like position)
+            are shared. The new fd returned by a successful call will be the lowest-numbered file
+            descriptor not currently open for the process.</dd>
+        <dt>link()</dt>
+        <dd>int link(const char *oldpath, const char *newpath) creates a new link (also known as a hard
+            link) to an existing file. If the newpath exists it will not be overwritten. This new name may
+            be used exactly as the old one for any operation; both names refer to the same file (and so
+            have the same permissions and ownership) and it is impossible to tell which name was the
+            ‘original’.</dd>
+        <dt>unlink()</dt>
+        <dd>int unlink(const char *pathname) deletes a name from the filesystem. If that name was the
+            last link to a file and no processes have the file open the file is deleted and the space it was
+            using is made available for reuse.</dd>
+        <dt>access()</dt>
+        <dd>int access(const char *pathname, int mode) is used to check if the calling program has
+            access to the specified file.</dd>
+        <dt>chmod()</dt>
+        <dd>int chmod(const char *path, mode_t mode) changes the mode of the file given by path.</dd>
+        <dt>chown()</dt>
+        <dd>int chown(const char *path, uid_t owner, gid_t group) changes the owner and group of the
+            file specified by path.</dd>
+        <dt>unmask()</dt>
+        <dd>mode_t umask(mode_t mask) sets the calling process’s file mode creation mask (umask) to
+            (mask & 0777). The umask is used by other system calls that create files to modify the
+            permissions placed on newly created files or directories. Specifically, permissions in the
+            umask are turned off from the mode argument for the other calls.</dd>
+        <dt>ioctl()</dt>
+        <dd>The ioctl() function manipulates the underlying device parameters of special files. In
+            particular, many operating characteristics of character special files (e.g. terminals) may be
+            controlled with ioctl() requests. Usually, on success zero is returned. A few ioctl() requests
+            use the return value as an output parameter and return a nonnegative value on success.
+            On error, -1 is returned, and errno is set appropriately.</dd>
+    </dl>
+</section>
+<section>
+    <h2>Process Management</h2>
+    <dl>
+        <dt>fork()</dt>
+        <dd>The system creates a child process that differs from the parent process. On success, the
+            PID of the child process is returned in the parent’s thread of execution, and a 0 is returned
+            in the child’s thread of execution. On failure, a -1 will be returned in the parent’s context, no
+            child process will be created.</dd>
+        <dt>wait()</dt>
+        <dd>pid_t wait(int *status) suspends execution of the current process and wait until the state
+            changes in a child of the calling process.</dd>
+        <dt>exit()</dt>
+        <dd>The function exit(int status) terminates the calling process immediately. Any open file
+            descriptors belonging to the process are closed, any children of the process are inherited
+            by process 1, init, and the process’s parent is sent a SIGCHLD signal. The value status is
+            returned to the parent process as the process’s exit status, and can be collected using one
+            of the wait() family of calls.</dd>
+        <dt>geteuid()</dt>
+        <dd>The system call returns the effective user ID of the current process.</dd>
+        <dt>getuid()</dt>
+        <dd>The system call returns the real user ID of the current process.</dd>
+        <dt>getegid()</dt>
+        <dd>The system call returns the effective group ID of the current process.</dd>
+        <dt>getgid()</dt>
+        <dd>The system call returns the real group ID of the current process.</dd>
+        <dt>getpid()</dt>
+        <dd>The system call returns the process ID of the calling process.</dd>
+        <dt>getppid()</dt>
+        <dd>The system call returns the process ID of the parent of the calling process.</dd>
+        <dt>signal()</dt>
+        <dd>sighandler_t signal(int signum, sighandler_t handler) installs a new signal handler for the
+            signal with number signum. The signal handler is set to sighandler which may be a user
+            specified function, or either SIG_IGN or SIG_DFL. Upon arrival of a signal with the number
+            signum the following happens. If the corresponding handler is set to SIG_IGN, then the
+            signal is ignored. If the handler is set to SIG_DFL, then the default action associated with the
+            signal occurs. Finally, if the handler is set to a function sighandler then first either the
+            handler is reset to SIG_DFL or an implementation-dependent blocking of the signal is
+            performed and then, sighandler is called with argument signum.</dd>
+        <dt>kill()</dt>
+        <dd>int kill(pid_t pid, int sig) system call can be used to send any signal - sig to any process
+            group or process.</dd>
+        <dt>alarm()</dt>
+        <dd>unsigned int alarm(unsigned int x) arranges for a SIGALRM signal to be delivered to the
+            process in x seconds. If x is zero, no new alarm is scheduled. In any event, previously set
+            alarm is canceled.</dd>
+        <dt>chdir()</dt>
+        <dd>chdir() changes the current working directory to that specified in path.</dd>
+    </dl>
+</section>
+{% endblock %}
+
+
+
+
+
+
+
+

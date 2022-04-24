@@ -1,5 +1,68 @@
-/* Process Scheduling */
+:root {
+  --blue: #4dbdeb;
+  --white: #ffffff;
+  --light-blue: #dfeeee;
+  --yellow: #ffe08c;
+}
 
+main {
+  margin: 0px 10%;
+}
+
+h2,
+nav {
+  margin-bottom: 1rem;
+}
+h1 {
+  margin-bottom: 1.5rem;
+}
+
+
+/* Index */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins';
+}
+.outer-div {
+  background-color:  #151719;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 56px);
+}
+.waviy {
+  position: relative;
+  -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0,0,0,.2));
+  font-size: 120px;
+}
+.waviy span {
+  font-family: 'Alfa Slab One';
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  text-transform: uppercase;
+  animation: waviy 1s infinite;
+  animation-delay: calc(.1s * var(--i));
+  font-weight: 900;
+}
+@keyframes waviy {
+  0%,40%,100% {
+    transform: translateY(0)
+  }
+  20% {
+    transform: translateY(-20px)
+  }
+}
+
+span.brand-logo {
+  margin-right: 20px;
+}
+
+/* Process Scheduling */
 #gantt-chart {
   margin: auto;
   width: 600px;
@@ -16,4 +79,40 @@
   text-align: center;
   background-color: rgba(112, 128, 144, 0.44);
   height: 98px;
+}
+
+/* Team */
+.team-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: calc(100vh - 56px);
+  row-gap: 10vh;
+}
+.team-div > table {
+  width: 40%;
+  text-align: center;
+}
+.team-div > table th {
+  font-size: 32px;
+}
+.team-div > table th {
+  font-size: 24px;
+}
+
+/* Process Scheduling */
+input {
+  margin-bottom: 0.5rem;
+}
+
+button#add,
+button#start {
+  margin-bottom: 2rem;
+}
+
+#average {
+  font-style: italic;
+  font-weight: lighter;
+  background-color: var(--light-blue);
 }

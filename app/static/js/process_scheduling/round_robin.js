@@ -15,9 +15,8 @@ var cpu_efficiency;
 var average_wt;
 var average_tat;
 $(document).ready(function () {
-    $('#inp').append(`<input type="number" min="0" id="tq" placeholder="Time quantum"></input>
-`)
-  
+    $('#tq').show();
+
     $('#start').click(function () {
         tq = parseInt(document.getElementById("tq").value);
         if (isNaN(tq)) {
