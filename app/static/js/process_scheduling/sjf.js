@@ -153,7 +153,6 @@ $(document).ready(function () {
 
     function displayBlock(i) {
         if (i == total) {
-            document.getElementById("ptab").style.display = 'block';
             drawTable(0);
             return;
         }
