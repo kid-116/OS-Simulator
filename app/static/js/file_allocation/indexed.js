@@ -12,6 +12,7 @@ $(document).ready(function () {
     var allocated;
     var memSize;
     var a = 0, b = 0;
+    var index;
     
     $('#find').click(function getSize() {
         memSize = document.getElementById("nof").value;
@@ -31,11 +32,20 @@ $(document).ready(function () {
         var size = document.getElementById("file_size").value;
         size = parseInt(size);
         if (name != "" && size != "") {
-            if (size > remaining) {
+            if (size+1 > remaining) {
                 alert("Cannot allocate!");
             }
             else {
                 const allocations = []
+                 while(true) {
+                        const b = Math.floor(Math.random() * memSize)
+                        if(allocated[b]) {
+                            continue;
+                        }
+                        allocated[b] = true;
+                        index = b;
+                        break;
+                    }
                 for (let i = 0; i < size; i++) {
                     while(true) {
                         const b = Math.floor(Math.random() * memSize)
@@ -47,8 +57,9 @@ $(document).ready(function () {
                         break;
                     }
                 }
-                remaining -= size;
-                showOutput(name, allocations);
+                
+                remaining = remaining - size-1;
+                showOutput(name, allocations, index);
             }
         }
         else {
@@ -56,11 +67,11 @@ $(document).ready(function () {
         }
     });
     
-    function showOutput(name, allocations) {
+    function showOutput(name, allocations, index) {
         var file = `
             <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">${name}</h5>
+                <h5 class="card-title">${name} (${index})</h5>
             </div>
             <ul class="list-group list-group-flush">
         `
